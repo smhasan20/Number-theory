@@ -1,0 +1,70 @@
+//bismillahhirrahmanirrahim
+#include<bits/stdc++.h>
+using namespace std;
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define int long long
+
+#define yes cout<<"YES"<<"\n"
+#define no cout<<"NO"<<"\n"
+#define line cout<<endl
+
+#define all(x) x.begin(),x.end()
+#define pb push_back
+#define ppb pop_back
+
+const int MOD = 1000000007;
+const int MAX = 1000006;
+int fact[MAX+2];
+
+void factorial()
+{
+    fact[0]=1;
+    fact[1]=1;
+    for(int i=2;i<=MAX;i++)
+{
+    int res=i*fact[i-1];
+    res=res%MOD;
+    fact[i]=res;
+}
+}
+
+int modExp(int base, int exp, int mod) {
+    int result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            result = (result * base) % mod;
+        }
+        base = (base * base) % mod;
+        exp /= 2;
+    }
+    return result;
+}
+
+
+
+
+void solve()
+{
+
+   int a,b;
+   cin>>a>>b;
+   int ans=fact[b]*fact[a-b];
+   ans=ans%MOD;
+   int ans_inv=modExp(ans,MOD-2,MOD);
+
+   ans=fact[a]*ans_inv;
+   ans=ans%MOD;
+   cout<<ans<<endl;
+
+}
+
+signed main()
+{
+    int t;
+    cin>>t;
+    factorial();
+    while(t--)
+    {
+      solve();
+    }
+}
